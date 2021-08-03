@@ -30,6 +30,12 @@ object AndroidX {
         private const val swipeRefreshVersion = "1.1.0"
         const val swipeRefresh =
             "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshVersion"
+
+        private const val navigationVersion = "2.3.5"
+        const val navigationFragment =
+            "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+        const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
     }
 
     object KTX {

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Shopping</string>
+    <string name="title_home">홈</string>
+    <string name="title_favorite">좋아요</string>
 </resources>

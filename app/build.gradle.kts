@@ -37,14 +37,20 @@ android {
 }
 dependencies {
     implementation(Kotlin.kotlinStdLib)
+
     implementation(AndroidX.appcompat)
     implementation(AndroidX.coreKtx)
+
     implementation(AndroidX.UI.constraintLayout)
     implementation(AndroidX.UI.recyclerView)
     implementation(AndroidX.UI.viewpager2)
     implementation(AndroidX.UI.swipeRefresh)
+    implementation(AndroidX.UI.navigationFragment)
+    implementation(AndroidX.UI.navigationUiKtx)
+
     implementation(AndroidX.KTX.fragment)
     implementation(AndroidX.KTX.viewModel)
+
     implementation(Material.material)
 
     // NetWork
