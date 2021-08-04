@@ -63,6 +63,11 @@ dependencies {
     implementation(Hilt.hiltAndroid)
     kapt(Hilt.hiltCompiler)
 
+    // Room
+    implementation(Room.room)
+    implementation(Room.roomKtx)
+    kapt(Room.roomCompiler)
+
     // Coroutine
     implementation(Coroutine.coroutine)
     implementation(Coroutine.coroutinesAndroid)
