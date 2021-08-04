@@ -51,12 +51,17 @@ class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK
     }
 
     companion object {
-        private const val BANNER_TYPE = 0
-        private const val GOOD_TYPE = 1
+        const val BANNER_TYPE = 0
+        const val GOOD_TYPE = 1
 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<HomeData>() {
-            override fun areItemsTheSame(oldItem: HomeData, newItem: HomeData): Boolean =
-                oldItem == newItem
+            override fun areItemsTheSame(oldItem: HomeData, newItem: HomeData): Boolean {
+                if (oldItem is GoodData && newItem is GoodData) {
+                    return oldItem.id == newItem.id
+                }
+
+                return oldItem == newItem
+            }
 
             override fun areContentsTheSame(oldItem: HomeData, newItem: HomeData): Boolean =
                 oldItem == newItem

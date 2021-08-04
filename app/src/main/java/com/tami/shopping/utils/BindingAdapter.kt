@@ -59,21 +59,4 @@ object BindingAdapter {
             }
         })
     }
-
-    @JvmStatic
-    @BindingAdapter("app:halfPageMargin", "app:peekOffSet", requireAll = true)
-    fun setViewPager2PageMargin(
-        viewPager2: ViewPager2,
-        @DimenRes halfPageMargin: Int,
-        @DimenRes peekOffSet: Int,
-    ) {
-        viewPager2.offscreenPageLimit = 1
-        val recyclerView = viewPager2.getChildAt(0) as RecyclerView
-        recyclerView.apply {
-            val padding = resources.getDimensionPixelOffset(halfPageMargin) +
-                    resources.getDimensionPixelOffset(peekOffSet)
-            setPadding(padding, 0, padding, 0)
-            clipToPadding = false
-        }
-    }
 }

@@ -15,6 +15,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getHomeDataListUseCase: GetHomeDataListUseCase
 ) : ViewModel() {
+
     private val _homeDataList = MutableLiveData<List<HomeData>>()
     val homeDataList: LiveData<List<HomeData>> get() = _homeDataList
 

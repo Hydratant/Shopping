@@ -10,11 +10,19 @@
             type="com.tami.shopping.model.HomeBannerData" />
     </data>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/banner"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/good"
-        app:layout_constraintDimensionRatio="750:527"
-        android:background="#882" />
+        android:layout_height="wrap_content">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:bannerList="@{item.bannerDataList}"
+            app:layout_constraintDimensionRatio="750:527"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="#882" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>
