@@ -4,10 +4,9 @@ import com.tami.shopping.data.repo.HomeRepository
 import com.tami.shopping.model.HomeData
 import javax.inject.Inject
 
-class GetHomeDataUseCase @Inject constructor(
+class GetHomeDataListUseCase @Inject constructor(
     private val homeRepository: HomeRepository
 ) : BaseUseCase() {
-
-    suspend operator fun invoke(): Result<HomeData> =
-        run { homeRepository.getHomeData() }
+    suspend operator fun invoke(): Result<List<HomeData>> =
+        run { homeRepository.getHomeDataList() }
 }

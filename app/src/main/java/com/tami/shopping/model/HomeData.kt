@@ -1,12 +1,7 @@
 package com.tami.shopping.model
 
+sealed class HomeData
 
-data class HomeData(
-    val bannerList: List<BannerData>,
-    val goodList: List<GoodData>
-) {
-    companion object {
-        val empty = HomeData(listOf(), listOf())
-    }
-}
-
+data class HomeBannerData(
+    val bannerDataList: List<BannerData>
+) : HomeData()

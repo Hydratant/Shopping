@@ -6,6 +6,6 @@ import com.tami.shopping.model.HomeData
 class HomeRepositoryImpl constructor(
     private val homeDataSource: HomeDataSource
 ) : HomeRepository {
-    override suspend fun getHomeData(): HomeData =
-        homeDataSource.getHome().toHomeData()
+    override suspend fun getHomeDataList(): List<HomeData> =
+        homeDataSource.getHome().toHomeDataList()
 }

@@ -1,5 +1,6 @@
 package com.tami.shopping.entity
 
+import com.tami.shopping.model.HomeBannerData
 import com.tami.shopping.model.HomeData
 
 data class HomeEntity(
@@ -11,10 +12,13 @@ data class HomeEntity(
         val empty = HomeEntity(listOf(), listOf())
     }
 
-    fun toHomeData(): HomeData =
-        HomeData(
-            banners.map { it.toBannerData() },
-            goods.map { it.toGoodData() }
-        )
+    fun toHomeDataList(): List<HomeData> {
+        val bannerDataList = banners.map { it.toBannerData() }
+        val goodsDataList = goods.map { it.toGoodData() }
+        return mutableListOf<HomeData>().apply {
+            add(HomeBannerData(bannerDataList))
+            addAll(goodsDataList)
+        }
+    }
 }
 
