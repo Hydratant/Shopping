@@ -15,6 +15,17 @@ data class GoodEntity(
         val empty = GoodEntity(0, 0, "", true, "", 0, 0)
     }
 
-    fun toGoodData(): GoodData =
-        GoodData(id, actual_price, image, is_new, name, price, sell_count)
+    fun toGoodData(): GoodData {
+
+        // 가격
+        val price = if (price == actual_price) price
+        else actual_price
+
+        // 세일율 구하기
+        val salePercent = if (price == actual_price) 0
+        else (price - actual_price) / price
+
+        return GoodData(id, name, image, is_new, price.toString(), sell_count.toString(), salePercent.toString())
+    }
+
 }

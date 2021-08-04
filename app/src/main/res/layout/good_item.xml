@@ -32,10 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:text="@{item.salePercent}"
             app:layout_constraintEnd_toStartOf="@id/price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image"
-            android:text="10%" />
+            tools:text="10%" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/price"
@@ -44,6 +45,7 @@
             android:layout_marginStart="4dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{item.price}"
             app:layout_constraintBottom_toBottomOf="@id/sale_percent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sale_percent"
@@ -57,6 +59,7 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{item.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sale_percent"
@@ -77,6 +80,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:text="@{item.sellCount}"
             app:layout_constraintBottom_toBottomOf="@id/is_new"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/is_new"
