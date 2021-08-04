@@ -1,5 +1,7 @@
 package com.tami.shopping.ui.main
 
+import android.content.Context
+import android.content.Intent
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -19,5 +21,10 @@ class MainActivity : BindingActivity<MainActBinding>(R.layout.main_act) {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         bb.navigation.setupWithNavController(navController)
+    }
+
+    companion object {
+        fun getIntent(context: Context): Intent =
+            Intent(context, MainActivity::class.java)
     }
 }

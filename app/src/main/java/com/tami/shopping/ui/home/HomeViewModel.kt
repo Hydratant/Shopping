@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tami.shopping.domain.GetHomeDataUseCase
+import com.tami.shopping.domain.GetBannerListUseCase
+import com.tami.shopping.domain.GetHomeGoodDataListUseCase
 import com.tami.shopping.model.BannerData
 import com.tami.shopping.model.GoodData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getHomeDataUseCase: GetHomeDataUseCase
+    private val getHomeGoodDataListUseCase: GetHomeGoodDataListUseCase,
+    private val getBannerListUseCase: GetBannerListUseCase
 ) : ViewModel() {
 
     private val _bannerDataList = MutableLiveData<List<BannerData>>()
@@ -29,13 +31,8 @@ class HomeViewModel @Inject constructor(
 
     fun getHome() {
         viewModelScope.launch {
-            getHomeDataUseCase().fold(
-                {
-                    _bannerDataList.value = it.bannerList
-                    _goodDataList.value = it.goodList
-                },
-                { Timber.e(it) }
-            )
+            getHomeGoodDataListUseCase().fold({ _goodDataList.value = it }, { Timber.e(it) })
+            getBannerListUseCase().fold({ _bannerDataList.value = it }, { Timber.e(it) })
         }
     }
 }
