@@ -11,19 +11,10 @@ class HomeFragment : BindingFragment<HomeFrBinding>(R.layout.home_fr) {
 
     private val vm: HomeViewModel by viewModels()
     override fun onLoadOnce() {
-        vm.bannerDataList.observe(viewLifecycleOwner) {
-            it?.let { list ->
-                bb.banner.adapter = BannerAdapter().apply {
-                    set(list)
-                }
-            }
-        }
-
+        bb.vm = vm
         vm.goodDataList.observe(viewLifecycleOwner) {
             it?.let { list ->
-                bb.good.adapter = GoodAdapter().apply {
-                    set(list)
-                }
+                bb.good.adapter = GoodAdapter().apply { submitList(list) }
             }
         }
     }
