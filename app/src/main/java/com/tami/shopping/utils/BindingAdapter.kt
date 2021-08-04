@@ -1,5 +1,6 @@
 package com.tami.shopping.utils
 
+import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DimenRes
 import androidx.databinding.BindingAdapter
@@ -22,6 +23,18 @@ object BindingAdapter {
             .load(url)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(imageView)
+    }
+
+
+    /**
+     * View Visible Gone
+     */
+    @JvmStatic
+    @BindingAdapter("app:isVisible")
+    fun setVisible(view: View, isVisible: Boolean) {
+        if (isVisible)
+            view.visibility = View.VISIBLE
+        else view.visibility = View.GONE
     }
 
     /**

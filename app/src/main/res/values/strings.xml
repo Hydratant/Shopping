@@ -2,4 +2,9 @@
     <string name="app_name">Shopping</string>
     <string name="title_home">홈</string>
     <string name="title_favorite">좋아요</string>
+
+    <string name="title_new">NEW</string>
+
+    <string name="sale_percent">%s%%</string>
+    <string name="sell_count">%s개 구매중</string>
 </resources>

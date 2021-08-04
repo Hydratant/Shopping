@@ -8,24 +8,10 @@ data class GoodData(
     val isNew: Boolean,     // 신상 여부
     val name: String,       // 이름
     val price: Int,         // 판매 가격
-    val sellCount: Int      // 판매수
+    val sellCount: Int,     // 판매수
+    val isFavorite: Boolean // 좋아요
 ) : HomeData() {
     companion object {
-        val empty = GoodData(0, 0, "", true, "", 0, 0)
+        val empty = GoodData(0, 0, "", true, "", 0, 0, true)
     }
-
-    val salePercent: String
-        get() {
-            val percent = if (actualPrice == price) 0
-            else ((actualPrice - price) / actualPrice)
-            return "$percent%"
-        }
-
-
-    val showPrice: String
-        get() {
-            val showPrice = if (actualPrice == price) actualPrice
-            else price
-            return showPrice.toString()
-        }
 }

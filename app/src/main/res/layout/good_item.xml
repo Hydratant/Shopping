@@ -27,42 +27,60 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:background="#889" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:isFavorite="@{item.isFavorite}"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/image"
+            tools:src="@drawable/ic_favorite_sunset_orange_24dp" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sale_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@{item.salePercent}"
+            android:layout_marginEnd="4dp"
+            android:textColor="@color/sunsetOrange"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:actualPrice="@{item.actualPrice}"
+            app:layout_constraintBottom_toBottomOf="@id/price"
             app:layout_constraintEnd_toStartOf="@id/price"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/price"
+            app:price="@{item.price}"
             tools:text="10%" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{item.showPrice}"
-            app:layout_constraintBottom_toBottomOf="@id/sale_percent"
+            android:textColor="@color/nero"
+            android:textSize="21sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sale_percent"
-            app:layout_constraintTop_toTopOf="@id/sale_percent"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:price="@{item.price}"
             tools:text="3,000" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{item.name}"
+            android:textColor="@color/suvaGray"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sale_percent"
+            app:layout_constraintTop_toBottomOf="@id/price"
             tools:text="[세트할인!]인기상품~벨치스 포켓 후드집업 + 피얼즈 골지스판 뷔스티에 원피스 세트상품" />
 
 
@@ -70,20 +88,30 @@
             android:id="@+id/is_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/new_bg"
+            android:padding="4dp"
+            android:text="@string/title_new"
+            android:textColor="@color/charcoal"
+            android:textSize="10sp"
+            app:isVisible="@{item.new}"
+            app:layout_constraintBottom_toBottomOf="@id/sell_count"
+            app:layout_constraintEnd_toStartOf="@id/sell_count"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintTop_toTopOf="@id/sell_count"
             tools:text="NEW" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sell_count"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            app:layout_constraintBottom_toBottomOf="@id/is_new"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/suvaGray"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/is_new"
-            app:layout_constraintTop_toTopOf="@id/is_new"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:sellCount="@{item.sellCount}"
             tools:text="1,023개 구매중" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
