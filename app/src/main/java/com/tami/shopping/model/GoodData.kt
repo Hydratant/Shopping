@@ -1,5 +1,7 @@
 package com.tami.shopping.model
 
+import com.tami.shopping.entity.FavoriteGoodEntity
+
 
 data class GoodData(
     val id: Int,            // Id
@@ -14,4 +16,7 @@ data class GoodData(
     companion object {
         val empty = GoodData(0, 0, "", true, "", 0, 0, true)
     }
+
+    fun toFavoriteGoodEntity(): FavoriteGoodEntity =
+        FavoriteGoodEntity(id, actualPrice, image, isNew, name, price, sellCount)
 }

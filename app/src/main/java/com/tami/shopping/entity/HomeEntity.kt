@@ -12,9 +12,13 @@ data class HomeEntity(
         val empty = HomeEntity(listOf(), listOf())
     }
 
-    fun toHomeDataList(): List<HomeData> {
+    fun toHomeDataList(favoriteList: List<FavoriteGoodEntity>): List<HomeData> {
         val bannerDataList = banners.map { it.toBannerData() }
-        val goodsDataList = goods.map { it.toGoodData() }
+        val goodsDataList = goods.map { entity ->
+            val isFavorite = favoriteList.any { entity.id == it.id }
+            entity.isFavorite = isFavorite
+            entity.toGoodData()
+        }
         return mutableListOf<HomeData>().apply {
             add(HomeBannerData(bannerDataList))
             addAll(goodsDataList)

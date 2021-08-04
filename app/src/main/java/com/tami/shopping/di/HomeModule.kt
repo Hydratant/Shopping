@@ -3,6 +3,7 @@ package com.tami.shopping.di
 import com.tami.shopping.data.remote.ShoppingApi
 import com.tami.shopping.data.repo.HomeRepository
 import com.tami.shopping.data.repo.HomeRepositoryImpl
+import com.tami.shopping.data.source.FavoriteDataSource
 import com.tami.shopping.data.source.HomeDataSource
 import com.tami.shopping.data.source.HomeDataSourceImpl
 import dagger.Module
@@ -19,6 +20,9 @@ object HomeModule {
         HomeDataSourceImpl(shoppingApi)
 
     @Provides
-    fun provideHomeRepository(homeDatasource: HomeDataSource): HomeRepository =
-        HomeRepositoryImpl(homeDatasource)
+    fun provideHomeRepository(
+        homeDatasource: HomeDataSource,
+        favoriteDataSource: FavoriteDataSource
+    ): HomeRepository =
+        HomeRepositoryImpl(homeDatasource, favoriteDataSource)
 }

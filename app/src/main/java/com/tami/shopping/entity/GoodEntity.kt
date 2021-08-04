@@ -10,13 +10,13 @@ data class GoodEntity(
     val name: String,                   // 이름
     val price: Int,                     // 판매 가격
     val sell_count: Int,                // 판매수
-    val isFavorite: Boolean = false     // 좋아요
+    var isFavorite: Boolean = false     // 좋아요
 ) {
     companion object {
         val empty = GoodEntity(0, 0, "", true, "", 0, 0)
     }
 
     fun toGoodData(): GoodData =
-        GoodData(id, actual_price, image, is_new, name, price, sell_count, false)
+        GoodData(id, actual_price, image, is_new, name, price, sell_count, isFavorite)
 
 }
