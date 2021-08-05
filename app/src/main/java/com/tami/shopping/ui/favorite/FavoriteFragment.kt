@@ -12,4 +12,8 @@ class FavoriteFragment : BindingFragment<FavoriteFrBinding>(R.layout.favorite_fr
     override fun onLoadOnce() {
         bb.vm = vm
     }
+
+    companion object {
+        const val TAG = "FavoriteFragment"
+    }
 }

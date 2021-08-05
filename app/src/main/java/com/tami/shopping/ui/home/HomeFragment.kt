@@ -13,4 +13,8 @@ class HomeFragment : BindingFragment<HomeFrBinding>(R.layout.home_fr) {
     override fun onLoadOnce() {
         bb.vm = vm
     }
+
+    companion object {
+        const val TAG = "HomeFragment"
+    }
 }
