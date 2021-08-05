@@ -33,6 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:onFavoriteClick="@{vm.onFavoriteClick}"
+                app:onScrollLast="@{vm::getGoodDataList}"
                 app:spanCount="2"
                 app:spanSizeLookup="@{vm.homeSpanSizeLookup}"
                 tools:itemCount="7"

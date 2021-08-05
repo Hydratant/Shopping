@@ -5,10 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tami.shopping.domain.DeleteFavoriteUseCase
+import com.tami.shopping.domain.GetGoodDataListUseCase
 import com.tami.shopping.domain.GetHomeDataListUseCase
 import com.tami.shopping.domain.InsertFavoriteUseCase
 import com.tami.shopping.model.GoodData
 import com.tami.shopping.model.HomeData
+import com.tami.shopping.utils.ListLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -17,12 +19,13 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getHomeDataListUseCase: GetHomeDataListUseCase,
+    private val getGoodDataListUseCase: GetGoodDataListUseCase,
     private val insertFavoriteUseCase: InsertFavoriteUseCase,
     private val deleteFavoriteUseCase: DeleteFavoriteUseCase
 ) : ViewModel() {
 
-    private val _homeDataList = MutableLiveData<List<HomeData>>(emptyList())
-    val homeDataList: LiveData<List<HomeData>> get() = _homeDataList
+    private val _homeDataList = ListLiveData<HomeData>()
+    val homeDataList: LiveData<ArrayList<HomeData>> get() = _homeDataList
 
     val homeSpanSizeLookup = HomeSpanSizeLookup()
     val onFavoriteClick: ((GoodData) -> Unit) = { onFavoriteClick(it) }
@@ -33,7 +36,18 @@ class HomeViewModel @Inject constructor(
 
     fun getHome() {
         viewModelScope.launch {
-            getHomeDataListUseCase().fold({ _homeDataList.value = it }, { Timber.e(it) })
+            getHomeDataListUseCase().fold({
+                _homeDataList.clear(false)
+                _homeDataList.addAll(it)
+            }, { Timber.e(it) })
+        }
+    }
+
+    fun getGoodDataList() {
+        viewModelScope.launch {
+            getGoodDataListUseCase(10).fold({
+                _homeDataList.addAll(it)
+            }, { Timber.e(it) })
         }
     }
 
