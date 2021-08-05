@@ -1,5 +1,6 @@
 package com.tami.shopping.data.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -10,7 +11,10 @@ import com.tami.shopping.entity.FavoriteGoodEntity
 interface FavoriteDao {
 
     @Query("SELECT * FROM favorites")
-    fun getFavoriteList(): List<FavoriteGoodEntity>
+    suspend fun getFavoriteList(): List<FavoriteGoodEntity>
+
+    @Query("SELECT * FROM favorites")
+    suspend fun getObserveFavoriteList(): LiveData<List<FavoriteGoodEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavorite(favoriteGoodEntity: FavoriteGoodEntity)

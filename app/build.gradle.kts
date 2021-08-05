@@ -50,6 +50,7 @@ dependencies {
 
     implementation(AndroidX.KTX.fragment)
     implementation(AndroidX.KTX.viewModel)
+    implementation(AndroidX.KTX.liveData)
 
     implementation(Material.material)
 

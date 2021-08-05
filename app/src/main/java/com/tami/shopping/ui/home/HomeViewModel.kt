@@ -40,15 +40,13 @@ class HomeViewModel @Inject constructor(
     private fun onFavoriteClick(goodData: GoodData) {
         viewModelScope.launch {
             if (goodData.isFavorite) {
-                deleteFavoriteUseCase(goodData.id).fold({
-                    Timber.i("delete Success")
-                }, {
-                    Timber.e(it)
-                })
+                deleteFavoriteUseCase(goodData.id)
+                    .fold({ Timber.i("delete Success") },
+                        { Timber.e(it) })
             } else {
-                insertFavoriteUseCase(goodData).fold({
-                    Timber.i("insert Success")
-                }, { Timber.e(it) })
+                insertFavoriteUseCase(goodData)
+                    .fold({ Timber.i("insert Success") },
+                        { Timber.e(it) })
             }
         }
     }

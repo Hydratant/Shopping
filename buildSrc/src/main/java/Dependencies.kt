@@ -42,6 +42,9 @@ object AndroidX {
         private const val viewModelVersion = "2.3.1"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
 
+        private const val liveDataVersion = "2.3.1"
+        const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$liveDataVersion"
+
         private const val fragmentVersion = "1.3.5"
         const val fragment = "androidx.fragment:fragment-ktx:$fragmentVersion"
     }
@@ -78,7 +81,6 @@ object Room {
     const val roomKtx = "androidx.room:room-ktx:$roomVersion"
     const val roomTesting = "androidx.room:room-testing:$roomVersion"
 }
-
 
 
 object Timber {

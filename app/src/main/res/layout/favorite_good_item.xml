@@ -27,17 +27,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:background="#889" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:scaleType="center"
-            app:isFavorite="@{item.isFavorite}"
-            app:layout_constraintEnd_toEndOf="@id/image"
-            app:layout_constraintTop_toTopOf="@id/image"
-            tools:src="@drawable/ic_favorite_sunset_orange_24dp" />
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sale_percent"
             android:layout_width="wrap_content"
@@ -101,8 +90,8 @@
             app:layout_constraintEnd_toStartOf="@id/sell_count"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/sell_count"
-            tools:text="NEW"
-            tools:ignore="SmallSp" />
+            tools:ignore="SmallSp"
+            tools:text="NEW" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sell_count"
