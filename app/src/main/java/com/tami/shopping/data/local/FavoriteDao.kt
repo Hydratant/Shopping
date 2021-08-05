@@ -14,7 +14,7 @@ interface FavoriteDao {
     suspend fun getFavoriteList(): List<FavoriteGoodEntity>
 
     @Query("SELECT * FROM favorites")
-    suspend fun getObserveFavoriteList(): LiveData<List<FavoriteGoodEntity>>
+    fun getObserveFavoriteList(): LiveData<List<FavoriteGoodEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavorite(favoriteGoodEntity: FavoriteGoodEntity)
