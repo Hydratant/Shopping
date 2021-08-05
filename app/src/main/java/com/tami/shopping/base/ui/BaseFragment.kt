@@ -3,7 +3,6 @@ package com.tami.shopping.base.ui
 import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.tami.shopping.base.ui.BaseActivity
 
 abstract class BaseFragment : Fragment() {
     private val baseActivity: BaseActivity by lazy { requireActivity() as BaseActivity }

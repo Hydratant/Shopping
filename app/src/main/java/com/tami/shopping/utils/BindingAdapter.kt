@@ -2,11 +2,9 @@ package com.tami.shopping.utils
 
 import android.view.View
 import android.widget.ImageView
-import androidx.annotation.DimenRes
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 

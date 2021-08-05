@@ -12,10 +12,10 @@ import com.tami.shopping.databinding.HomeBannerItemBinding
 import com.tami.shopping.model.GoodData
 import com.tami.shopping.model.HomeBannerData
 import com.tami.shopping.model.HomeData
-import java.lang.IllegalArgumentException
 
 class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
+    var onFavoriteClick: ((GoodData) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
@@ -28,7 +28,7 @@ class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK
             GOOD_TYPE -> {
                 val bb: GoodItemBinding =
                     DataBindingUtil.inflate(inflater, R.layout.good_item, parent, false)
-                GoodViewHolder(bb)
+                GoodViewHolder(bb, onFavoriteClick)
             }
             else -> throw IllegalArgumentException()
         }
@@ -56,11 +56,10 @@ class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK
 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<HomeData>() {
             override fun areItemsTheSame(oldItem: HomeData, newItem: HomeData): Boolean {
-                if (oldItem is GoodData && newItem is GoodData) {
-                    return oldItem.id == newItem.id
-                }
-
-                return oldItem == newItem
+                return if (oldItem is GoodData && newItem is GoodData) {
+                    oldItem.id == newItem.id
+                } else
+                    oldItem == newItem
             }
 
             override fun areContentsTheSame(oldItem: HomeData, newItem: HomeData): Boolean =
@@ -69,9 +68,15 @@ class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK
     }
 }
 
-class GoodViewHolder(private val bb: GoodItemBinding) : RecyclerView.ViewHolder(bb.root) {
+class GoodViewHolder(
+    private val bb: GoodItemBinding,
+    private val onFavoriteClick: ((GoodData) -> Unit)? = null
+) : RecyclerView.ViewHolder(bb.root) {
     fun bind(item: GoodData) {
-        with(bb) { this.item = item }
+        with(bb) {
+            this.item = item
+            favorite.setOnClickListener { onFavoriteClick?.invoke(item) }
+        }
     }
 }
 

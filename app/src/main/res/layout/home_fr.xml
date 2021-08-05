@@ -25,12 +25,15 @@
                 android:id="@+id/home"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                app:homeList="@{vm.homeDataList}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:onFavoriteClick="@{vm.onFavoriteClick}"
                 app:spanCount="2"
+                app:spanSizeLookup="@{vm.homeSpanSizeLookup}"
                 tools:itemCount="7"
                 tools:listitem="@layout/good_item" />
 

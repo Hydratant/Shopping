@@ -1,6 +1,5 @@
 package com.tami.shopping.ui.home
 
-import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
