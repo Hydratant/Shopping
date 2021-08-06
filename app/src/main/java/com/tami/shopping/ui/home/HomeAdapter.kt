@@ -57,7 +57,7 @@ class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<HomeData>() {
             override fun areItemsTheSame(oldItem: HomeData, newItem: HomeData): Boolean {
                 return if (oldItem is GoodData && newItem is GoodData) {
-                     oldItem == newItem
+                    oldItem.id == newItem.id
                 } else
                     oldItem == newItem
             }

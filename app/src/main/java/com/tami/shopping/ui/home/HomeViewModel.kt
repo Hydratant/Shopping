@@ -45,9 +45,13 @@ class HomeViewModel @Inject constructor(
 
     fun getGoodDataList() {
         viewModelScope.launch {
-            getGoodDataListUseCase(10).fold({
-                _homeDataList.addAll(it)
-            }, { Timber.e(it) })
+            homeDataList.value?.last()?.let {
+                if (it is GoodData) {
+                    getGoodDataListUseCase(it.id).fold({ list ->
+                        _homeDataList.addAll(list)
+                    }, { exception -> Timber.e(exception) })
+                }
+            }
         }
     }
 
