@@ -5,5 +5,5 @@ import com.tami.shopping.entity.HomeEntity
 
 interface HomeDataSource {
     suspend fun getHome(): HomeEntity
-    suspend fun getGoodList(lastId: Int): GoodListEntity
+    suspend fun getGoodListByLastId(lastId: Int): GoodListEntity
 }

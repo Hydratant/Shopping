@@ -5,5 +5,5 @@ import com.tami.shopping.model.HomeData
 
 interface HomeRepository {
     suspend fun getHomeDataList(): List<HomeData>
-    suspend fun getGoodDataList(lastId: Int): List<GoodData>
+    suspend fun getGoodDataListByLastId(lastId: Int): List<GoodData>
 }

@@ -8,6 +8,6 @@ class HomeDataSourceImpl constructor(
     private val shoppingApi: ShoppingApi
 ) : HomeDataSource {
     override suspend fun getHome(): HomeEntity = shoppingApi.getHome()
-    override suspend fun getGoodList(lastId: Int): GoodListEntity =
+    override suspend fun getGoodListByLastId(lastId: Int): GoodListEntity =
         shoppingApi.getGoodList(lastId)
 }

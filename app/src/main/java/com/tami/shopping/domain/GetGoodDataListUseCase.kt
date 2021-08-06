@@ -9,5 +9,5 @@ class GetGoodDataListUseCase @Inject constructor(
 ) : BaseUseCase() {
 
     suspend operator fun invoke(lastId: Int): Result<List<GoodData>> =
-        run { homeRepository.getGoodDataList(lastId) }
+        run { homeRepository.getGoodDataListByLastId(lastId) }
 }

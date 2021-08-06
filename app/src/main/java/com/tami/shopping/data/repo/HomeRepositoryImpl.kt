@@ -12,6 +12,6 @@ class HomeRepositoryImpl constructor(
     override suspend fun getHomeDataList(): List<HomeData> =
         homeDataSource.getHome().toHomeDataList(favoriteDataSource.getFavoriteList())
 
-    override suspend fun getGoodDataList(lastId: Int): List<GoodData> =
-        homeDataSource.getGoodList(lastId).goods.map { it.toGoodData() }
+    override suspend fun getGoodDataListByLastId(lastId: Int): List<GoodData> =
+        homeDataSource.getGoodListByLastId(lastId).goods.map { it.toGoodData() }
 }
