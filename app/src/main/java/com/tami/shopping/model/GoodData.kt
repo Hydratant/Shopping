@@ -11,7 +11,7 @@ data class GoodData(
     val name: String,       // 이름
     val price: Int,         // 판매 가격
     val sellCount: Int,     // 판매수
-    val isFavorite: Boolean // 좋아요
+    var isFavorite: Boolean // 좋아요
 ) : HomeData() {
     companion object {
         val empty = GoodData(0, 0, "", true, "", 0, 0, true)

@@ -10,7 +10,7 @@ object FavoriteBindingAdapter {
     @BindingAdapter("app:favoriteList")
     fun setFavoriteList(
         recyclerView: RecyclerView,
-        favoriteList: List<GoodData>
+        favoriteList: List<GoodData>?
     ) {
         ((recyclerView.adapter as? FavoriteAdapter))?.submitList(favoriteList)
             ?: run {

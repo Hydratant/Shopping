@@ -59,11 +59,11 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             if (goodData.isFavorite) {
                 deleteFavoriteUseCase(goodData.id)
-                    .fold({ Timber.i("delete Success") },
+                    .fold({ goodData.isFavorite = false },
                         { Timber.e(it) })
             } else {
                 insertFavoriteUseCase(goodData)
-                    .fold({ Timber.i("insert Success") },
+                    .fold({ goodData.isFavorite = true },
                         { Timber.e(it) })
             }
         }

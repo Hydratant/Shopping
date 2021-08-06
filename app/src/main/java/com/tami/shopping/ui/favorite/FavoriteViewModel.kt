@@ -1,34 +1,19 @@
 package com.tami.shopping.ui.favorite
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.tami.shopping.domain.GetFavoriteListUseCase
+import androidx.lifecycle.*
+import com.tami.shopping.domain.ObserveGetFavoriteListUseCase
 import com.tami.shopping.model.GoodData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
-    private val getFavoriteListUseCase: GetFavoriteListUseCase
+    private val observeGetFavoriteListUseCase: ObserveGetFavoriteListUseCase
 ) : ViewModel() {
-    private val _favoriteList = MutableLiveData<List<GoodData>>(emptyList())
-    val favoriteList: LiveData<List<GoodData>> get() = _favoriteList
-
-
-    init {
-        getList()
+    private val _favoriteList: LiveData<Result<List<GoodData>>> = liveData {
+        emitSource(observeGetFavoriteListUseCase())
     }
-
-    fun getList() {
-        viewModelScope.launch {
-            getFavoriteListUseCase().fold(
-                { _favoriteList.value = it },
-                { Timber.e(it) }
-            )
-        }
+    val favoriteList: LiveData<List<GoodData>> = _favoriteList.map {
+        it.fold({ list -> return@map list }, { return@map emptyList() })
     }
 }
