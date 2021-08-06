@@ -12,14 +12,14 @@ class FavoriteDataSourceImpl constructor(
     private val ioDisPatcher: CoroutineDispatcher = Dispatchers.IO
 ) : FavoriteDataSource {
     override suspend fun getFavoriteList(): List<FavoriteGoodEntity> =
-        favoriteDao.getFavoriteList()
+        withContext(ioDisPatcher) { favoriteDao.getFavoriteList() }
 
     override suspend fun getObserveFavoriteList(): LiveData<List<FavoriteGoodEntity>> =
         withContext(ioDisPatcher) { favoriteDao.getObserveFavoriteList() }
 
     override suspend fun insertFavorite(favoriteGoodEntity: FavoriteGoodEntity) =
-        favoriteDao.insertFavorite(favoriteGoodEntity)
+        withContext(ioDisPatcher) { favoriteDao.insertFavorite(favoriteGoodEntity) }
 
     override suspend fun deleteFavoriteById(id: Int): Int =
-        favoriteDao.deleteFavoriteById(id)
+        withContext(ioDisPatcher) { favoriteDao.deleteFavoriteById(id) }
 }

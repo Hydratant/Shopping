@@ -9,11 +9,11 @@ class FavoriteRepositoryImpl constructor(
     private val favoriteDataSource: FavoriteDataSource
 ) : FavoriteRepository {
     override suspend fun getFavoriteList(): List<GoodData> =
-        favoriteDataSource.getFavoriteList().map { it.toGooData() }
+        favoriteDataSource.getFavoriteList().map { it.toGoodData() }
 
     override suspend fun getObserveFavoriteList(): LiveData<Result<List<GoodData>>> =
         favoriteDataSource.getObserveFavoriteList().map {
-            Result.success(it.map { entity -> entity.toGooData() })
+            Result.success(it.map { entity -> entity.toGoodData() })
         }
 
     override suspend fun insertFavorite(goodData: GoodData) {

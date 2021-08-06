@@ -16,6 +16,6 @@ data class FavoriteGoodEntity(
     @ColumnInfo(name = "price")         val price: Int,         // 판매 가격
     @ColumnInfo(name = "sellCount")     val sellCount: Int,     // 판매수
 ) {
-    fun toGooData(): GoodData =
+    fun toGoodData(): GoodData =
         GoodData(id, actualPrice, image, isNew, name, price, sellCount, true)
 }
