@@ -7,5 +7,5 @@ interface FavoriteRepository {
     suspend fun getFavoriteList(): List<GoodData>
     suspend fun getObserveFavoriteList(): LiveData<Result<List<GoodData>>>
     suspend fun insertFavorite(goodData: GoodData)
-    suspend fun deleteFavorite(id: Int): Int
+    suspend fun deleteFavoriteById(id: Int): Int
 }

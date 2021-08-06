@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tami.shopping.domain.DeleteFavoriteUseCase
+import com.tami.shopping.domain.DeleteFavoriteByIdUseCase
 import com.tami.shopping.domain.GetGoodDataListUseCase
 import com.tami.shopping.domain.GetHomeDataListUseCase
 import com.tami.shopping.domain.InsertFavoriteUseCase
@@ -21,14 +21,18 @@ class HomeViewModel @Inject constructor(
     private val getHomeDataListUseCase: GetHomeDataListUseCase,
     private val getGoodDataListUseCase: GetGoodDataListUseCase,
     private val insertFavoriteUseCase: InsertFavoriteUseCase,
-    private val deleteFavoriteUseCase: DeleteFavoriteUseCase
+    private val deleteFavoriteByIdUseCase: DeleteFavoriteByIdUseCase
 ) : ViewModel() {
 
     private val _homeDataList = ListLiveData<HomeData>()
     val homeDataList: LiveData<ArrayList<HomeData>> get() = _homeDataList
 
+    private val _notifyItemChanged = MutableLiveData<Int>()
+    val notifyItemChanged: LiveData<Int> get() = _notifyItemChanged
+
     val homeSpanSizeLookup = HomeSpanSizeLookup()
-    val onFavoriteClick: ((GoodData) -> Unit) = { onFavoriteClick(it) }
+    val onFavoriteClick: ((GoodData, Int) -> Unit) =
+        { data, position -> onFavoriteClick(data, position) }
 
     init {
         getHome()
@@ -55,16 +59,20 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun onFavoriteClick(goodData: GoodData) {
+    private fun onFavoriteClick(goodData: GoodData, position: Int) {
         viewModelScope.launch {
             if (goodData.isFavorite) {
-                deleteFavoriteUseCase(goodData.id)
-                    .fold({ goodData.isFavorite = false },
-                        { Timber.e(it) })
+                deleteFavoriteByIdUseCase(goodData.id)
+                    .fold({
+                        goodData.isFavorite = false
+                        _notifyItemChanged.value = position
+                    }, { Timber.e(it) })
             } else {
                 insertFavoriteUseCase(goodData)
-                    .fold({ goodData.isFavorite = true },
-                        { Timber.e(it) })
+                    .fold({
+                        goodData.isFavorite = true
+                        _notifyItemChanged.value = position
+                    }, { Timber.e(it) })
             }
         }
     }

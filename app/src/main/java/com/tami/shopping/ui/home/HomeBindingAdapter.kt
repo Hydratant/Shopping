@@ -23,7 +23,7 @@ object HomeBindingAdapter {
     fun setHomeList(
         recyclerView: RecyclerView,
         homeDataList: List<HomeData>,
-        onFavoriteClick: ((GoodData) -> Unit)?
+        onFavoriteClick: ((GoodData, Int) -> Unit)?
     ) {
         val tempList = ArrayList(homeDataList)
         ((recyclerView.adapter as? HomeAdapter))?.submitList(tempList)

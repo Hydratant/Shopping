@@ -20,6 +20,6 @@ class FavoriteRepositoryImpl constructor(
         favoriteDataSource.insertFavorite(goodData.toFavoriteGoodEntity())
     }
 
-    override suspend fun deleteFavorite(id: Int): Int =
-        favoriteDataSource.deleteFavorite(id)
+    override suspend fun deleteFavoriteById(id: Int): Int =
+        favoriteDataSource.deleteFavoriteById(id)
 }

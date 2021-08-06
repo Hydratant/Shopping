@@ -13,6 +13,9 @@ interface FavoriteDao {
     @Query("SELECT * FROM favorites")
     suspend fun getFavoriteList(): List<FavoriteGoodEntity>
 
+    @Query("SELECT * FROM favorites  WHERE id = :id")
+    suspend fun getFavoriteById(id: Int): FavoriteGoodEntity?
+
     @Query("SELECT * FROM favorites")
     fun getObserveFavoriteList(): LiveData<List<FavoriteGoodEntity>>
 
@@ -20,5 +23,5 @@ interface FavoriteDao {
     suspend fun insertFavorite(favoriteGoodEntity: FavoriteGoodEntity)
 
     @Query("DELETE FROM favorites WHERE id = :id")
-    suspend fun deleteTaskById(id: Int): Int
+    suspend fun deleteFavoriteById(id: Int): Int
 }

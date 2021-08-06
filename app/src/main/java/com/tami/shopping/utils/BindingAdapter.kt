@@ -70,4 +70,10 @@ object BindingAdapter {
             }
         })
     }
+
+    @JvmStatic
+    @BindingAdapter("app:notifyItemChanged")
+    fun notifyItemChanged(recyclerView: RecyclerView, position: Int?) {
+        position?.let { recyclerView.adapter?.notifyItemChanged(it) }
+    }
 }

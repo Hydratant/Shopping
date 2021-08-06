@@ -15,7 +15,7 @@ import com.tami.shopping.model.HomeData
 
 class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
-    var onFavoriteClick: ((GoodData) -> Unit)? = null
+    var onFavoriteClick: ((GoodData, Int) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
@@ -70,12 +70,12 @@ class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK
 
 class GoodViewHolder(
     private val bb: GoodItemBinding,
-    private val onFavoriteClick: ((GoodData) -> Unit)? = null
+    private val onFavoriteClick: ((GoodData, Int) -> Unit)? = null
 ) : RecyclerView.ViewHolder(bb.root) {
     fun bind(item: GoodData) {
         with(bb) {
             this.item = item
-            favorite.setOnClickListener { onFavoriteClick?.invoke(item) }
+            favorite.setOnClickListener { onFavoriteClick?.invoke(item, bindingAdapterPosition) }
         }
     }
 }
