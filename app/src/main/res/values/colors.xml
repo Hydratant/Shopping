@@ -15,4 +15,5 @@
     <color name="charcoal">#4A4A4A</color>
 
     <color name="opacity_20_black">#33000000</color>
+    <color name="opacity_30_black">#4D000000</color>
 </resources>
