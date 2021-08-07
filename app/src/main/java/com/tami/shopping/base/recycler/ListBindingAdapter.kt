@@ -10,6 +10,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ *  공통 ListBindingAdapter
+ *
+ *  @param diffCallback Diff Item CallBack
+ *  @param resId Binding layout ResId
+ *  @param holderClass BindingViewHolder를 상속받은 ViewHolder Class
+ */
 abstract class ListBindingAdapter<T, B : ViewDataBinding, VH : BindingViewHolder<T, B>> constructor(
     diffCallback: DiffUtil.ItemCallback<T>,
     @LayoutRes private val resId: Int,
