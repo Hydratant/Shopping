@@ -1,4 +1,4 @@
-package com.tami.shopping.base
+package com.tami.shopping.utils
 
 import androidx.lifecycle.Observer
 

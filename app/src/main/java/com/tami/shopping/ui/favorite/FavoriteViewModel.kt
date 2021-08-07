@@ -2,11 +2,10 @@ package com.tami.shopping.ui.favorite
 
 import androidx.lifecycle.*
 import com.tami.shopping.R
-import com.tami.shopping.base.Event
 import com.tami.shopping.domain.ObserveGetFavoriteListUseCase
 import com.tami.shopping.model.GoodData
+import com.tami.shopping.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel

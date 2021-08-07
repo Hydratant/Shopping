@@ -5,17 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tami.shopping.R
-import com.tami.shopping.base.Event
 import com.tami.shopping.domain.DeleteFavoriteByIdUseCase
 import com.tami.shopping.domain.GetGoodDataListUseCase
 import com.tami.shopping.domain.GetHomeDataListUseCase
 import com.tami.shopping.domain.InsertFavoriteUseCase
 import com.tami.shopping.model.GoodData
 import com.tami.shopping.model.HomeData
+import com.tami.shopping.utils.Event
 import com.tami.shopping.utils.ListLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel

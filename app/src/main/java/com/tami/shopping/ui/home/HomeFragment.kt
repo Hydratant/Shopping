@@ -3,9 +3,9 @@ package com.tami.shopping.ui.home
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.tami.shopping.R
-import com.tami.shopping.base.EventObserver
 import com.tami.shopping.base.ui.BindingFragment
 import com.tami.shopping.databinding.HomeFrBinding
+import com.tami.shopping.utils.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

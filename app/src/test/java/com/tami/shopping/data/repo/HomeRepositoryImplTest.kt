@@ -4,9 +4,9 @@ import com.tami.shopping.data.FakeData
 import com.tami.shopping.data.source.FakeFavoriteDataSource
 import com.tami.shopping.data.source.FakeHomeDataSource
 import com.tami.shopping.model.GoodData
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
-import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
