@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tami.shopping.R
+import com.tami.shopping.base.Event
 import com.tami.shopping.domain.DeleteFavoriteByIdUseCase
 import com.tami.shopping.domain.GetGoodDataListUseCase
 import com.tami.shopping.domain.GetHomeDataListUseCase
@@ -30,6 +32,13 @@ class HomeViewModel @Inject constructor(
     private val _notifyItemChanged = MutableLiveData<Int>()
     val notifyItemChanged: LiveData<Int> get() = _notifyItemChanged
 
+    private val _showErrorMessage = MutableLiveData<Event<Int>>()
+    val showErrorMessage: LiveData<Event<Int>> get() = _showErrorMessage
+
+    private val _showToastMessage = MutableLiveData<Event<Int>>()
+    val showToastMessage: LiveData<Event<Int>> get() = _showToastMessage
+
+
     val homeSpanSizeLookup = HomeSpanSizeLookup()
     val onFavoriteClick: ((GoodData, Int) -> Unit) =
         { data, position -> onFavoriteClick(data, position) }
@@ -43,7 +52,7 @@ class HomeViewModel @Inject constructor(
             getHomeDataListUseCase().fold({
                 _homeDataList.clear(false)
                 _homeDataList.addAll(it)
-            }, { Timber.e(it) })
+            }, { showErrorMessage() })
         }
     }
 
@@ -53,7 +62,7 @@ class HomeViewModel @Inject constructor(
                 if (it is GoodData) {
                     getGoodDataListUseCase(it.id).fold({ list ->
                         _homeDataList.addAll(list)
-                    }, { exception -> Timber.e(exception) })
+                    }, { showErrorMessage() })
                 }
             }
         }
@@ -66,14 +75,24 @@ class HomeViewModel @Inject constructor(
                     .fold({
                         goodData.isFavorite = false
                         _notifyItemChanged.value = position
-                    }, { Timber.e(it) })
+                        showToastMessage(R.string.favorite_delete_success)
+                    }, { showErrorMessage() })
             } else {
                 insertFavoriteUseCase(goodData)
                     .fold({
                         goodData.isFavorite = true
                         _notifyItemChanged.value = position
-                    }, { Timber.e(it) })
+                        showToastMessage(R.string.favorite_insert_success)
+                    }, { showErrorMessage() })
             }
         }
+    }
+
+    private fun showToastMessage(message: Int) {
+        _showToastMessage.value = Event(message)
+    }
+
+    private fun showErrorMessage(message: Int = R.string.common_error_message) {
+        _showErrorMessage.value = Event(message)
     }
 }

@@ -1,6 +1,8 @@
 package com.tami.shopping.ui.favorite
 
 import androidx.lifecycle.*
+import com.tami.shopping.R
+import com.tami.shopping.base.Event
 import com.tami.shopping.domain.ObserveGetFavoriteListUseCase
 import com.tami.shopping.model.GoodData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,6 +16,16 @@ class FavoriteViewModel @Inject constructor(
         emitSource(observeGetFavoriteListUseCase())
     }
     val favoriteList: LiveData<List<GoodData>> = _favoriteList.map {
-        it.fold({ list -> return@map list }, { return@map emptyList() })
+        it.fold({ list -> return@map list }, {
+            showErrorMessage()
+            return@map emptyList()
+        })
+    }
+
+    private val _showErrorMessage = MutableLiveData<Event<Int>>()
+    val showErrorMessage: LiveData<Event<Int>> get() = _showErrorMessage
+
+    private fun showErrorMessage(message: Int = R.string.common_error_message) {
+        _showErrorMessage.value = Event(message)
     }
 }
