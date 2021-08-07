@@ -3,8 +3,6 @@ package com.tami.shopping.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.tami.shopping.R
@@ -44,7 +42,7 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is GoodViewHolder -> holder.bind(item as GoodData)
             is HomeBannerViewHolder -> {
                 holder.bind(item as HomeBannerData)
-                onViewPagerRefresh = { holder.currentPage() }
+                onViewPagerRefresh = { holder.currentItemInit() }
             }
         }
     }
@@ -113,7 +111,7 @@ class HomeBannerViewHolder(private val bb: HomeBannerItemBinding) :
         }
     }
 
-    fun currentPage() {
+    fun currentItemInit() {
         bb.banner.currentItem = 0
     }
 }
