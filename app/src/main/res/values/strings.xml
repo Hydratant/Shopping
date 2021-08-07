@@ -7,4 +7,6 @@
 
     <string name="sale_percent">%s%%</string>
     <string name="sell_count">%s개 구매중</string>
+
+    <string name="banner_page">%s/%s</string>
 </resources>

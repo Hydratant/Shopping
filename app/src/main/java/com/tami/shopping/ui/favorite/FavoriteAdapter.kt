@@ -27,7 +27,10 @@ class FavoriteAdapter : ListBindingAdapter<GoodData, FavoriteGoodItemBinding, Fa
 class FavoriteViewHolder(itemView: View) :
     BindingViewHolder<GoodData, FavoriteGoodItemBinding>(itemView) {
     override fun bind(item: GoodData) {
-        with(bb) { this.item = item }
+        with(bb) {
+            this.item = item
+            executePendingBindings()
+        }
     }
 
 }

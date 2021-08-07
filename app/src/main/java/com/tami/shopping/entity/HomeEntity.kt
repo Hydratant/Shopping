@@ -20,7 +20,7 @@ data class HomeEntity(
             entity.toGoodData()
         }
         return mutableListOf<HomeData>().apply {
-            add(HomeBannerData(bannerDataList))
+            add(HomeBannerData(bannerDataList, 1))
             addAll(goodsDataList)
         }
     }

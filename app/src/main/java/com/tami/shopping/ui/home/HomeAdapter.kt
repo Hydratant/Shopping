@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.tami.shopping.R
 import com.tami.shopping.databinding.GoodItemBinding
 import com.tami.shopping.databinding.HomeBannerItemBinding
@@ -76,6 +77,7 @@ class GoodViewHolder(
         with(bb) {
             this.item = item
             favorite.setOnClickListener { onFavoriteClick?.invoke(item, bindingAdapterPosition) }
+            executePendingBindings()
         }
     }
 }
@@ -83,6 +85,16 @@ class GoodViewHolder(
 class HomeBannerViewHolder(private val bb: HomeBannerItemBinding) :
     RecyclerView.ViewHolder(bb.root) {
     fun bind(item: HomeBannerData) {
-        with(bb) { this.item = item }
+        with(bb) {
+            this.item = item
+            bb.banner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    this@with.item = item.apply {
+                        currentPage = position + 1
+                    }
+                }
+            })
+            executePendingBindings()
+        }
     }
 }

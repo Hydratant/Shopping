@@ -29,6 +29,9 @@ class BannerAdapter :
 class BannerViewHolder(itemView: View) :
     BindingViewHolder<BannerData, BannerItemBinding>(itemView) {
     override fun bind(item: BannerData) {
-        with(bb) { this.item = item }
+        with(bb) {
+            this.item = item
+            executePendingBindings()
+        }
     }
 }
