@@ -28,14 +28,14 @@ class HomeViewModel @Inject constructor(
     private val _homeDataList = ListLiveData<HomeData>()
     val homeDataList: LiveData<ArrayList<HomeData>> get() = _homeDataList
 
-    private val _notifyItemChanged = MutableLiveData<Int>()
-    val notifyItemChanged: LiveData<Int> get() = _notifyItemChanged
-
     private val _showErrorMessage = MutableLiveData<Event<Int>>()
     val showErrorMessage: LiveData<Event<Int>> get() = _showErrorMessage
 
     private val _showToastMessage = MutableLiveData<Event<Int>>()
     val showToastMessage: LiveData<Event<Int>> get() = _showToastMessage
+
+    private val _bannerRefresh = MutableLiveData<Event<Unit>>()
+    val bannerRefresh: LiveData<Event<Unit>> get() = _bannerRefresh
 
 
     val homeSpanSizeLookup = HomeSpanSizeLookup()
@@ -55,6 +55,11 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun refresh() {
+        getHome()
+        _bannerRefresh.value = Event(Unit)
+    }
+
     fun getGoodDataList() {
         viewModelScope.launch {
             homeDataList.value?.last()?.let {
@@ -72,20 +77,15 @@ class HomeViewModel @Inject constructor(
             if (goodData.isFavorite) {
                 deleteFavoriteByIdUseCase(goodData.id)
                     .fold({
-//                        val data = _homeDataList.value?.find { it is GoodData && it.id == goodData.id }
-//                        data?.let {
-//                            (it as GoodData).isFavorite = false
-//                            _homeDataList.notifyChange()
-//                        }
                         goodData.isFavorite = false
-                        _notifyItemChanged.value = position
+                        _homeDataList.notifyChange()
                         showToastMessage(R.string.favorite_delete_success)
                     }, { showErrorMessage() })
             } else {
                 insertFavoriteUseCase(goodData)
                     .fold({
                         goodData.isFavorite = true
-                        _notifyItemChanged.value = position
+                        _homeDataList.notifyChange()
                         showToastMessage(R.string.favorite_insert_success)
                     }, { showErrorMessage() })
             }

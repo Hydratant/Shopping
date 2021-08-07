@@ -99,24 +99,6 @@ class HomeViewModelTest {
 
 
     @Test
-    fun insertToastMessageAndNotifyItemChanged() {
-        val goodData =
-            GoodData(0, 0, "", true, "", 0, 0, false)
-
-        homeViewModel.onFavoriteClick.invoke(goodData, 0)
-
-        assertThat(
-            homeViewModel.showToastMessage.getOrAwaitValue().getContentIfNotHandled(),
-            `is`(R.string.favorite_insert_success)
-        )
-
-        assertThat(
-            homeViewModel.notifyItemChanged.getOrAwaitValue(),
-            `is`(0)
-        )
-    }
-
-    @Test
     fun insertExceptionErrorMessage() = runBlockingTest {
         homeViewModel = getTestHomeViewModel(true)
         val goodData =
@@ -126,24 +108,6 @@ class HomeViewModelTest {
         assertThat(
             homeViewModel.showErrorMessage.getOrAwaitValue().getContentIfNotHandled(),
             `is`(R.string.common_error_message)
-        )
-    }
-
-    @Test
-    fun deleteToastMessageAndNotifyItemChanged() {
-        val goodData =
-            GoodData(0, 0, "", true, "", 0, 0, true)
-
-        homeViewModel.onFavoriteClick.invoke(goodData, 0)
-
-        assertThat(
-            homeViewModel.showToastMessage.getOrAwaitValue().getContentIfNotHandled(),
-            `is`(R.string.favorite_delete_success)
-        )
-
-        assertThat(
-            homeViewModel.notifyItemChanged.getOrAwaitValue(),
-            `is`(0)
         )
     }
 

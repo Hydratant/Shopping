@@ -20,6 +20,9 @@ class HomeFragment : BindingFragment<HomeFrBinding>(R.layout.home_fr) {
         vm.showToastMessage.observe(viewLifecycleOwner, EventObserver {
             Toast.makeText(requireContext(), getText(it), Toast.LENGTH_SHORT).show()
         })
+        vm.bannerRefresh.observe(viewLifecycleOwner, EventObserver {
+            (bb.home.adapter as? HomeAdapter)?.onViewPagerRefresh?.invoke()
+        })
     }
 
     companion object {

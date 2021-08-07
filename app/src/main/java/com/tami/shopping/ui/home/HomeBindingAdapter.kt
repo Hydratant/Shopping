@@ -15,8 +15,10 @@ object HomeBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("app:bannerList")
-    fun setBannerList(viewPager2: ViewPager2,
-                      bannerList: List<BannerData>) {
+    fun setBannerList(
+        viewPager2: ViewPager2,
+        bannerList: List<BannerData>
+    ) {
         ((viewPager2.adapter as? BannerAdapter)?.submitList(bannerList))
             ?: run { viewPager2.adapter = BannerAdapter().apply { submitList(bannerList) } }
     }
@@ -32,10 +34,11 @@ object HomeBindingAdapter {
         homeDataList: List<HomeData>,
         onFavoriteClick: ((GoodData, Int) -> Unit)?
     ) {
-        ((recyclerView.adapter as? HomeAdapter))?.submitList(homeDataList)
+        ((recyclerView.adapter as? HomeAdapter))?.set(homeDataList)
             ?: run {
                 recyclerView.adapter = HomeAdapter().apply {
-                    submitList(homeDataList)
+                    set(homeDataList)
+                    setHasStableIds(true)
                     this.onFavoriteClick = onFavoriteClick
                 }
                 recyclerView.itemAnimator = null
@@ -50,19 +53,6 @@ object HomeBindingAdapter {
         spanSizeLookup: GridLayoutManager.SpanSizeLookup
     ) {
         (recyclerView.layoutManager as? GridLayoutManager)?.spanSizeLookup = spanSizeLookup
-    }
-
-    @JvmStatic
-    @BindingAdapter("app:onPageSelected")
-    fun setOnPageSelected(
-        viewPager2: ViewPager2,
-        onPageSelected: ((Int) -> Unit)
-    ) {
-        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                onPageSelected.invoke(position)
-            }
-        })
     }
 
     @JvmStatic

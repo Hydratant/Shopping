@@ -13,4 +13,6 @@
     <color name="suvaGray">#929292</color>
     <color name="darkGray">#B0B0B0</color>
     <color name="charcoal">#4A4A4A</color>
+
+    <color name="opacity_20_black">#33000000</color>
 </resources>

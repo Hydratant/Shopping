@@ -14,9 +14,12 @@ import com.tami.shopping.model.GoodData
 import com.tami.shopping.model.HomeBannerData
 import com.tami.shopping.model.HomeData
 
-class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
+class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    val items = mutableListOf<HomeData>()
     var onFavoriteClick: ((GoodData, Int) -> Unit)? = null
+    var onViewPagerRefresh: (() -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
@@ -39,7 +42,10 @@ class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK
         val item = getItem(position)
         when (holder) {
             is GoodViewHolder -> holder.bind(item as GoodData)
-            is HomeBannerViewHolder -> holder.bind(item as HomeBannerData)
+            is HomeBannerViewHolder -> {
+                holder.bind(item as HomeBannerData)
+                onViewPagerRefresh = { holder.currentPage() }
+            }
         }
     }
 
@@ -51,22 +57,28 @@ class HomeAdapter : ListAdapter<HomeData, RecyclerView.ViewHolder>(DIFF_CALLBACK
         }
     }
 
+    override fun getItemId(position: Int): Long {
+        val item = getItem(position)
+        return when (item) {
+            is HomeBannerData -> hashCode().toLong()
+            is GoodData -> item.id.toLong()
+            else -> throw IllegalArgumentException()
+        }
+    }
+
+    override fun getItemCount(): Int = items.size
+    fun getItem(position: Int): HomeData = items[position]
+    fun set(items: List<HomeData>) {
+        this.items.clear()
+        this.items.addAll(items)
+        notifyDataSetChanged()
+    }
+
     companion object {
         const val BANNER_TYPE = 0
         const val GOOD_TYPE = 1
-
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<HomeData>() {
-            override fun areItemsTheSame(oldItem: HomeData, newItem: HomeData): Boolean {
-                return if (oldItem is GoodData && newItem is GoodData) {
-                    oldItem.id == newItem.id
-                } else
-                    oldItem == newItem
-            }
-
-            override fun areContentsTheSame(oldItem: HomeData, newItem: HomeData): Boolean =
-                oldItem == newItem
-        }
     }
+
 }
 
 class GoodViewHolder(
@@ -99,5 +111,9 @@ class HomeBannerViewHolder(private val bb: HomeBannerItemBinding) :
             })
             executePendingBindings()
         }
+    }
+
+    fun currentPage() {
+        bb.banner.currentItem = 0
     }
 }
