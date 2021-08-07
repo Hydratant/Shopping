@@ -35,10 +35,8 @@
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:textColor="@color/white"
-            app:currentPage="@{item.currentPage}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:totalPage="@{item.totalCount}"
             tools:text="3/3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
