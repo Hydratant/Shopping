@@ -16,9 +16,8 @@ class ListLiveData<T> : MutableLiveData<ArrayList<T>>() {
     }
 
     fun addAll(list: List<T>) {
-        val items: ArrayList<T> = arrayListOf()
-        items.addAll(value!!)
-        items.addAll(list)
+        val items: ArrayList<T>? = value
+        items?.addAll(list)
         value = items
     }
 
@@ -37,8 +36,7 @@ class ListLiveData<T> : MutableLiveData<ArrayList<T>>() {
     }
 
     fun notifyChange() {
-        val items: ArrayList<T> = arrayListOf()
-        items.addAll(value!!)
+        val items: ArrayList<T>? = value
         value = items
     }
 }

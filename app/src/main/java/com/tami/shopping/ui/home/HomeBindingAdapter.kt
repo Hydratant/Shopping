@@ -15,7 +15,8 @@ object HomeBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("app:bannerList")
-    fun setBannerList(viewPager2: ViewPager2, bannerList: List<BannerData>) {
+    fun setBannerList(viewPager2: ViewPager2,
+                      bannerList: List<BannerData>) {
         ((viewPager2.adapter as? BannerAdapter)?.submitList(bannerList))
             ?: run { viewPager2.adapter = BannerAdapter().apply { submitList(bannerList) } }
     }
@@ -31,13 +32,13 @@ object HomeBindingAdapter {
         homeDataList: List<HomeData>,
         onFavoriteClick: ((GoodData, Int) -> Unit)?
     ) {
-        val tempList = ArrayList(homeDataList)
-        ((recyclerView.adapter as? HomeAdapter))?.submitList(tempList)
+        ((recyclerView.adapter as? HomeAdapter))?.submitList(homeDataList)
             ?: run {
                 recyclerView.adapter = HomeAdapter().apply {
-                    submitList(tempList)
+                    submitList(homeDataList)
                     this.onFavoriteClick = onFavoriteClick
                 }
+                recyclerView.itemAnimator = null
             }
     }
 

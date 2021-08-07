@@ -25,6 +25,7 @@ object GoodBindingAdapter {
         if (actualPrice == price) {
             textView.visibility = View.GONE
         } else {
+            textView.visibility = View.VISIBLE
             val percent =
                 (((actualPrice.toFloat() - price.toFloat()) / actualPrice.toFloat()) * 100).toInt()
             textView.text =

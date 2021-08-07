@@ -72,6 +72,11 @@ class HomeViewModel @Inject constructor(
             if (goodData.isFavorite) {
                 deleteFavoriteByIdUseCase(goodData.id)
                     .fold({
+//                        val data = _homeDataList.value?.find { it is GoodData && it.id == goodData.id }
+//                        data?.let {
+//                            (it as GoodData).isFavorite = false
+//                            _homeDataList.notifyChange()
+//                        }
                         goodData.isFavorite = false
                         _notifyItemChanged.value = position
                         showToastMessage(R.string.favorite_delete_success)

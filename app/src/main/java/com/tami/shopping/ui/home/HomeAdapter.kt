@@ -92,20 +92,12 @@ class HomeBannerViewHolder(private val bb: HomeBannerItemBinding) :
             this.item = item
             bb.banner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
-                    currentPageText(position + 1, item.totalCount)
+                    this@with.item = item.apply {
+                        currentPage = position + 1
+                    }
                 }
             })
             executePendingBindings()
         }
-    }
-
-    private fun currentPageText(currentPage: Int, totalPage: Int) {
-        val context = itemView.context
-        bb.currentPage.text =
-            String.format(
-                context.getString(R.string.banner_page),
-                currentPage,
-                totalPage
-            )
     }
 }
