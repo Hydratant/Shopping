@@ -14,7 +14,9 @@ class FavoriteViewModel @Inject constructor(
     private val observeGetFavoriteListUseCase: ObserveGetFavoriteListUseCase
 ) : ViewModel() {
     private val _favoriteList: LiveData<Result<List<GoodData>>> = liveData {
-        emitSource(observeGetFavoriteListUseCase())
+        runCatching {
+            emitSource(observeGetFavoriteListUseCase())
+        }.onFailure { showErrorMessage() }
     }
     val favoriteList: LiveData<List<GoodData>> = _favoriteList.map {
         it.fold({ list -> return@map list }, {
