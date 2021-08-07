@@ -76,7 +76,10 @@ class GoodViewHolder(
     fun bind(item: GoodData) {
         with(bb) {
             this.item = item
-            favorite.setOnClickListener { onFavoriteClick?.invoke(item, bindingAdapterPosition) }
+            favorite.setOnClickListener {
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION)
+                    onFavoriteClick?.invoke(item, bindingAdapterPosition)
+            }
             executePendingBindings()
         }
     }
