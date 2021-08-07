@@ -6,6 +6,7 @@ import com.tami.shopping.base.Event
 import com.tami.shopping.domain.ObserveGetFavoriteListUseCase
 import com.tami.shopping.model.GoodData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,6 +21,13 @@ class FavoriteViewModel @Inject constructor(
             showErrorMessage()
             return@map emptyList()
         })
+    }
+
+    val isShowEmptyText: LiveData<Boolean> = favoriteList.map {
+        it.isEmpty()
+    }
+    val isShowFavoriteList: LiveData<Boolean> = favoriteList.map {
+        it.isNotEmpty()
     }
 
     private val _showErrorMessage = MutableLiveData<Event<Int>>()

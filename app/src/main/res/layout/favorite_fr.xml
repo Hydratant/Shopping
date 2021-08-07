@@ -20,11 +20,25 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:favoriteList="@{vm.favoriteList}"
+            app:isVisible="@{vm.isShowFavoriteList}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
             tools:listitem="@layout/good_item" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favorite_empty_message"
+            android:textColor="@color/nero"
+            android:textSize="16sp"
+            app:isVisible="@{vm.isShowEmptyText}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

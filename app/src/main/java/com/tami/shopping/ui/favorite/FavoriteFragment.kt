@@ -7,6 +7,7 @@ import com.tami.shopping.base.EventObserver
 import com.tami.shopping.base.ui.BindingFragment
 import com.tami.shopping.databinding.FavoriteFrBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class FavoriteFragment : BindingFragment<FavoriteFrBinding>(R.layout.favorite_fr) {

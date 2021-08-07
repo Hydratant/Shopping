@@ -12,6 +12,7 @@
     <string name="banner_page">%s/%s</string>
 
     <string name="common_error_message">서비스 요청 중 오류가 발생했습니다.\n잠시 후 다시 시도해 주세요.</string>
-    <string name="favorite_insert_success">좋아요 추가되었습니다.</string>
-    <string name="favorite_delete_success">좋아요 추가되었습니다.</string>
+    <string name="favorite_empty_message">지금 바로 상품을 `좋아요`에 담아보세요.</string>
+    <string name="favorite_insert_success">상품을 `좋아요`에 담았어요.</string>
+    <string name="favorite_delete_success">상품을 `좋아요`에서 지웠어요.</string>
 </resources>
