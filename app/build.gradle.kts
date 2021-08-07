@@ -90,5 +90,7 @@ dependencies {
     testImplementation(UnitTest.mockitoKotlin)
     testImplementation(UnitTest.hamcrest)
     testImplementation(UnitTest.robolectric)
+    testImplementation(UnitTest.testingCore)
+    testImplementation(Coroutine.coroutineTest)
     implementation(UnitTest.testCore)
 }

@@ -17,4 +17,7 @@ object UnitTest {
     private const val androidxTestCoreVersion = "1.3.0"
     const val testCore = "androidx.test:core:$androidxTestCoreVersion"
 
+    private const val testingCoreVersion = "2.1.0"
+    const val testingCore = "androidx.arch.core:core-testing:$testingCoreVersion"
+
 }
