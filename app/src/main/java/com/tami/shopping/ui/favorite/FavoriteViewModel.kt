@@ -24,12 +24,8 @@ class FavoriteViewModel @Inject constructor(
         })
     }
 
-    val isShowEmptyText: LiveData<Boolean> = favoriteList.map {
-        it.isEmpty()
-    }
-    val isShowFavoriteList: LiveData<Boolean> = favoriteList.map {
-        it.isNotEmpty()
-    }
+    val isShowEmptyText: LiveData<Boolean> = favoriteList.map { it.isEmpty() }
+    val isShowFavoriteList: LiveData<Boolean> = favoriteList.map { it.isNotEmpty() }
 
     private val _showErrorMessage = MutableLiveData<Event<Int>>()
     val showErrorMessage: LiveData<Event<Int>> get() = _showErrorMessage
